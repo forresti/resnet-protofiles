@@ -3,6 +3,7 @@
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 from string import ascii_lowercase
 import collections
+from util_resnet import mkdir_p
 
 def data_layer(name):
         data_layer_str = '''name: "%s"
@@ -369,7 +370,10 @@ def resnet(variant='50'): # Currently supports 50, 101, 152
 
 def main():
     for net in ('18', '34', '50', '101', '152'):
-        with open('ResNet_{}_train_val.prototxt'.format(net), 'w') as fp:
+        out_dir = 'nets/ResNet_{}'.format(net)
+        mkdir_p(out_dir)
+
+        with open('{}/train_val.prototxt'.format(out_dir), 'w') as fp:
             fp.write(resnet(net))
 
 USE_SHORTCUT = True
