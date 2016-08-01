@@ -369,6 +369,8 @@ def resnet(variant='50'): # Currently supports 50, 101, 152
 
 
 def main():
+    mkdir_p('nets')
+
     for net in ('18', '34', '50', '101', '152'):
         out_dir = 'nets/ResNet_{}'.format(net)
         mkdir_p(out_dir)
